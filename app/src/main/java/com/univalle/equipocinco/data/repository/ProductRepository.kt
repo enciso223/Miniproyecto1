@@ -2,59 +2,39 @@ package com.univalle.equipocinco.data.repository
 
 import com.univalle.equipocinco.data.local.dao.ProductDao
 import com.univalle.equipocinco.data.local.entity.Product
-import com.univalle.equipocinco.data.remote.api.InventoryApiService
-import com.univalle.equipocinco.domain.model.Product
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 class ProductRepository(
-    private val productDao: ProductDao,
-    private val apiService: InventoryApiService? = null // Optional for now
+    private val productDao: ProductDao
 ) {
 
-    // Local operations
+    // ✅ Obtener todos los productos como Flow
     fun getAllProducts(): Flow<List<Product>> {
-        return productDao.getAllProducts().map { entities ->
-            entities.map { it.toProduct() }
-        }
+        return productDao.getAllProducts()
     }
 
+    // ✅ Obtener producto por ID
     suspend fun getProductById(id: Int): Product? {
-        return productDao.getProductById(id)?.toProduct()
+        return productDao.getProductById(id)
     }
 
+    // ✅ Insertar producto
     suspend fun insertProduct(product: Product) {
-        productDao.insertProduct(product.toEntity())
+        productDao.insertProduct(product)
     }
 
+    // ✅ Actualizar producto
     suspend fun updateProduct(product: Product) {
-        productDao.updateProduct(product.toEntity())
+        productDao.updateProduct(product)
     }
 
+    // ✅ Eliminar producto
     suspend fun deleteProduct(product: Product) {
-        productDao.deleteProduct(product.toEntity())
+        productDao.deleteProduct(product)
     }
 
+    // ✅ Obtener valor total del inventario
     suspend fun getTotalInventoryValue(): Double {
         return productDao.getTotalInventoryValue() ?: 0.0
-    }
-
-    // Mapping functions
-    private fun Product.toProduct(): Product {
-        return com.univalle.equipocinco.domain.model.Product(
-            id = this.id,
-            name = this.name,
-            price = this.price,
-            quantity = this.quantity
-        )
-    }
-
-    private fun Product.toEntity(): Product {
-        return Product(
-            id = this.id,
-            name = this.name,
-            price = this.price,
-            quantity = this.quantity
-        )
     }
 }

@@ -17,6 +17,6 @@ class ProductViewModelFactory(
             val repository = ProductRepository(database.productDao())
             return ProductViewModel(repository, context) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
 }
