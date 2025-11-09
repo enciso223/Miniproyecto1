@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="equipocinco.ui.login.LoginFragment"
+        android:name="com.univalle.equipocinco.ui.login.LoginFragment"
         android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="equipocinco.ui.home.HomeFragment"
+        android:name="com.univalle.equipocinco.ui.home.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/addProductFragment"
-        android:name="equipocinco.ui.addproduct.AddProductFragment"
+        android:name="com.univalle.equipocinco.ui.addproduct.AddProductFragment"
         android:label="AddProductFragment">
         <action
             android:id="@+id/action_addProductFragment_to_homeFragment"
@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="equipocinco.ui.detail.ProductDetailFragment"
+        android:name="com.univalle.equipocinco.ui.detail.ProductDetailFragment"
         android:label="ProductDetailFragment">
 
         <!-- ✅ ARGUMENTO CON VALOR POR DEFECTO (CRÍTICO) -->
@@ -69,7 +69,7 @@
 
     <fragment
         android:id="@+id/editProductFragment"
-        android:name="equipocinco.ui.editproduct.EditProductFragment"
+        android:name="com.univalle.equipocinco.ui.editproduct.EditProductFragment"
         android:label="EditProductFragment">
         <argument
             android:name="productId"
