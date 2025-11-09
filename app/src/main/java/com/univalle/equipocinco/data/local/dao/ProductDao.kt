@@ -23,5 +23,5 @@ interface ProductDao {
     suspend fun deleteProduct(product: Product)
 
     @Query("SELECT SUM(price * quantity) FROM products")
-    suspend fun getTotalInventoryValue(): Double?
+    fun getTotalInventoryValue(): Double?
 }
