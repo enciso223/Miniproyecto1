@@ -26,7 +26,11 @@ abstract class InventoryDatabase : RoomDatabase() {
                     context.applicationContext,
                     InventoryDatabase::class.java,
                     "inventory_database"
-                ).build()
+                )
+                    // 👇 AGREGA ESTA LÍNEA AQUÍ
+                    .fallbackToDestructiveMigration()
+                    .build()
+
                 INSTANCE = instance
                 instance
             }
