@@ -41,7 +41,7 @@ class ProductViewModel(
     fun addProduct(product: Product) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertProduct(product)
-            InventoryWidgetProvider.updateAllWidgets(appContext)
+            //InventoryWidgetProvider.updateAllWidgets(appContext)
         }
     }
 
@@ -49,7 +49,7 @@ class ProductViewModel(
     fun updateProduct(product: Product) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateProduct(product)
-            InventoryWidgetProvider.updateAllWidgets(appContext)
+            //InventoryWidgetProvider.updateAllWidgets(appContext)
         }
     }
 
@@ -57,7 +57,7 @@ class ProductViewModel(
     fun deleteProduct(product: Product) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteProduct(product)
-            InventoryWidgetProvider.updateAllWidgets(appContext)
+            //InventoryWidgetProvider.updateAllWidgets(appContext)
         }
     }
 }
