@@ -18,7 +18,7 @@ import com.univalle.equipocinco.databinding.FragmentAddProductBinding
 import com.univalle.equipocinco.ui.home.ProductViewModel
 import com.univalle.equipocinco.ui.home.ProductViewModelFactory
 import kotlinx.coroutines.launch
-
+import kotlinx.coroutines.flow.firstOrNull
 class AddProductFragment : Fragment() {
 
     private var _binding: FragmentAddProductBinding? = null
@@ -200,7 +200,6 @@ class AddProductFragment : Fragment() {
     }
 
     private fun saveProduct() {
-        // Deshabilitar botón para evitar múltiples clics
         binding.btnSave.isEnabled = false
 
         try {
@@ -209,51 +208,40 @@ class AddProductFragment : Fragment() {
             val price = binding.etPrice.text.toString().trim().toDouble()
             val quantity = binding.etQuantity.text.toString().trim().toInt()
 
-            // Verificar si el producto ya existe
-            lifecycleScope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 try {
-                    val existingProduct = viewModel.getProductById(code)
+                    val product = viewModel.getProductById(code).firstOrNull()
 
-                    existingProduct.collect { product ->
-                        if (product != null) {
-                            // Producto ya existe
-                            binding.tilProductCode.error = "Este código ya existe"
-                            binding.btnSave.isEnabled = true
-                            Toast.makeText(
-                                requireContext(),
-                                "El producto con código $code ya existe",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            // Producto nuevo, proceder a guardar
-                            val newProduct = Product(
-                                id = code,
-                                name = name,
-                                price = price,
-                                quantity = quantity
-                            )
+                    if (product != null) {
+                        binding.tilProductCode.error = "Este código ya existe"
+                        binding.btnSave.isEnabled = true
+                        Toast.makeText(
+                            requireContext(),
+                            "El producto con código $code ya existe",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        val newProduct = Product(code, name, price, quantity)
+                        viewModel.addProduct(newProduct)
 
-                            // Guardar en base de datos
-                            viewModel.addProduct(newProduct)
+                        Toast.makeText(
+                            requireContext(),
+                            "Producto guardado exitosamente",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-                            // Mostrar mensaje de éxito
-                            Toast.makeText(
-                                requireContext(),
-                                "Producto guardado exitosamente",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                            // Navegar de regreso a Home
-                            findNavController().navigate(R.id.action_addProductFragment_to_homeFragment)
-                        }
+                        findNavController().navigate(R.id.action_addProductFragment_to_homeFragment)
                     }
+
                 } catch (e: Exception) {
-                    binding.btnSave.isEnabled = true
-                    Toast.makeText(
-                        requireContext(),
-                        "Error al guardar el producto: ${e.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    if (_binding != null) {
+                        binding.btnSave.isEnabled = true
+                        Toast.makeText(
+                            requireContext(),
+                            "Error al guardar el producto: ${e.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
 
@@ -264,15 +252,9 @@ class AddProductFragment : Fragment() {
                 "Error: Verifica los valores numéricos",
                 Toast.LENGTH_SHORT
             ).show()
-        } catch (e: Exception) {
-            binding.btnSave.isEnabled = true
-            Toast.makeText(
-                requireContext(),
-                "Error inesperado: ${e.message}",
-                Toast.LENGTH_LONG
-            ).show()
         }
     }
+
 
     private fun clearFields() {
         binding.etProductCode.text?.clear()
