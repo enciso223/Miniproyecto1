@@ -42,8 +42,8 @@ class ProductAdapter(
                 // Id de producto
                 tvProductId.text = "Id: ${product.id}"
 
-                // Total (precio × cantidad) - Color naranja según criterio 5
-                tvProductTotal.text = formatCurrency(product.price * product.quantity)
+
+                tvProductTotal.text = formatCurrency(product.price)
 
                 // Click en todo el item
                 root.setOnClickListener {
