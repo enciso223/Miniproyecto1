@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="12dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
     android:backgroundTint="@android:color/white">
@@ -22,61 +22,37 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:textColor="@color/black_transparent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvProductTotal"
             android:layout_marginEnd="16dp"
-            tools:text="Mouse Logitech" />
+            tools:text="zapatos" />
 
-        <!-- ✅ INFERIOR IZQUIERDA: ID del producto (AGREGADO) -->
+        <!-- ✅ INFERIOR IZQUIERDA: ID del producto -->
         <TextView
             android:id="@+id/tvProductId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textColor="#999999"
+            android:textColor="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvProductName"
-            android:layout_marginTop="4dp"
-            tools:text="ID: 1234" />
+            android:layout_marginTop="8dp"
+            tools:text="Id: 12" />
 
-        <!-- Precio unitario (debajo del ID) -->
-        <TextView
-            android:id="@+id/tvProductPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvProductId"
-            android:layout_marginTop="4dp"
-            tools:text="$ 50.000,00" />
-
-        <!-- Cantidad (al lado del precio) -->
-        <TextView
-            android:id="@+id/tvProductQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            app:layout_constraintStart_toEndOf="@id/tvProductPrice"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvProductPrice"
-            android:layout_marginStart="16dp"
-            tools:text="x10" />
-
-        <!-- ✅ DERECHA CENTRAL: Total NARANJA -->
+        <!-- ✅ DERECHA: Total NARANJA centrado verticalmente -->
         <TextView
             android:id="@+id/tvProductTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#e7522e"
+            android:textColor="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="$ 500.000,00" />
+            app:layout_constraintBottom_toBottomOf="@id/tvProductId"
+            tools:text="$ 23.000,00" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

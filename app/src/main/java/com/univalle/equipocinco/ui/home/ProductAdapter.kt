@@ -39,11 +39,8 @@ class ProductAdapter(
                 // Nombre del producto
                 tvProductName.text = product.name
 
-                // Precio unitario
-                tvProductPrice.text = formatCurrency(product.price)
-
-                // Cantidad
-                tvProductQuantity.text = "x${product.quantity}"
+                // Id de producto
+                tvProductId.text = "Id: ${product.id}"
 
                 // Total (precio × cantidad) - Color naranja según criterio 5
                 tvProductTotal.text = formatCurrency(product.price * product.quantity)
