@@ -83,9 +83,9 @@ class ProductDetailFragment : Fragment() {
                     viewModel.product.collect { product ->
                         product ?: return@collect
                         binding.tvName.text = product.name
-                        binding.tvPrice.text = formatCurrency(product.price)
-                        binding.tvQuantity.text = "x${product.quantity}"
-                        binding.tvTotal.text = formatCurrency(product.price * product.quantity)
+                        binding.tvPriceValue.text = formatCurrency(product.price)
+                        binding.tvQuantityValue.text = "${product.quantity}"
+                        binding.tvTotalValue.text = formatCurrency(product.price * product.quantity)
                     }
                 }
             }
