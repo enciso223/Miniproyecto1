@@ -57,7 +57,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Precio"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:maxLength="20"
         android:textColor="#FFFFFF"
         android:textColorHint="#BDBDBD"

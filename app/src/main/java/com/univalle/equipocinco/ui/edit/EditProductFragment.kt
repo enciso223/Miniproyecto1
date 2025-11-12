@@ -19,6 +19,9 @@ import com.univalle.equipocinco.ui.home.ProductViewModel
 import com.univalle.equipocinco.ui.home.ProductViewModelFactory
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
 class EditProductFragment : Fragment() {
 
@@ -114,11 +117,14 @@ class EditProductFragment : Fragment() {
                     binding.txtProductId.text = product.id.toString()
                     binding.edtName.setText(product.name)
                     binding.edtPrice.setText(product.price.toString())
+
                     binding.edtQuantity.setText(product.quantity.toString())
                 }
             }
         }
     }
+
+
 
     private fun setupListeners() {
         binding.btnSaveChanges.setOnClickListener {

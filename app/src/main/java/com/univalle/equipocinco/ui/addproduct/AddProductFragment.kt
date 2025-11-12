@@ -40,10 +40,18 @@ class AddProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupToolbar()
         setupInputFilters()
         setupTextWatchers()
         setupListeners()
     }
+
+    private fun setupToolbar() {
+        binding.ivBack.setOnClickListener {
+            findNavController().navigate(R.id.action_addProductFragment_to_homeFragment)
+        }
+    }
+
 
     private fun setupInputFilters() {
         // Código producto: máximo 4 dígitos

@@ -17,6 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Volver"
+            app:tint="@android:color/white"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,6 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:maxLength="4"
                     android:textColor="@android:color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,6 +147,7 @@
                 android:text="Guardar"
                 android:textColor="@android:color/white"
                 android:backgroundTint="#e7522e"
+                app:cornerRadius="24dp"
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
